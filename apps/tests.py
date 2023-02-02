@@ -10,6 +10,4 @@ writer (add blog, change blog)
 
 user
 
-
-
 '''

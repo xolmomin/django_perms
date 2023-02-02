@@ -21,8 +21,14 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey('apps.Category', models.CASCADE)
+    is_premium = models.BooleanField(default=False)
     owner = models.ForeignKey('apps.User', models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        permissions = [
+            ('see_premium_product', 'Can see premium products')
+        ]
