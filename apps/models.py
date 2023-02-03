@@ -1,6 +1,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+'''
+merchant, client, manager, staff tipli userlar boladi
+
+comment product ga tegishli boladi (commentni egasi add, change qiladi, manager delete qiladi oladi)
+
+task managar tomonidan stafflarga beriladi (staff change qiladi oladi[status], manager delete, add, change)
+
+'''
+# IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+
 
 class User(AbstractUser):
     class Type(models.TextChoices):

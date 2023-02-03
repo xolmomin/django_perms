@@ -1,4 +1,13 @@
-from rest_framework.permissions import BasePermission, DjangoObjectPermissions
+from rest_framework.permissions import BasePermission, DjangoObjectPermissions, SAFE_METHODS
+
+
+class IsAdminUserOrReadOnly(BasePermission):
+    """
+    Allows access only to admin users or readonly.
+    """
+
+    def has_permission(self, request, view):
+        return bool(request.method in SAFE_METHODS or request.user and request.user.is_staff)
 
 
 class IsOwner(BasePermission):
@@ -9,7 +18,7 @@ class IsOwner(BasePermission):
     def has_object_permission(self, request, view, obj):
         user = request.user
 
-        if obj.owner == user:
+        if hasattr(obj, 'owner') and obj.owner == user:
             return True
 
         return False

@@ -11,6 +11,13 @@ class CategoryModelSerializer(ModelSerializer):
         read_only_fields = ('id',)
 
 
+class UserModelSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+        read_only_fields = ('id',)
+
+
 class CreateProductModelSerializer(ModelSerializer):
     owner = HiddenField(default=CurrentUserDefault())
 
